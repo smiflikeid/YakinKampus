@@ -14,6 +14,18 @@ public class Box : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
+        }
+        if (other.CompareTag("Collectable"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +56,5 @@ public class Box : MonoBehaviour
             direction += Vector3.right;
         }
         _rb.velocity = direction.normalized * speed;
-        //transform.position += direction * speed * Time.deltaTime;
     }
 }
