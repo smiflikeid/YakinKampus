@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
+    public float speed = 2;
+
+    public bool isAppleCollected;
+
     private Rigidbody _rb;
 
     // Start is called before the first frame update
@@ -13,20 +16,48 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
+        }
+        if (other.CompareTag("Collectable"))
+        {
+            other.gameObject.SetActive(false);
+            isAppleCollected = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        var direction = Vector3.zero;
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            _rb.velocity = Vector3.forward * speed;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            _rb.velocity = Vector3.back * speed;
+            speed = 5;
         }
         else
         {
-            _rb.velocity = Vector3.zero;
+            speed = 2;
         }
+        if (Input.GetKey(KeyCode.W))
+        {
+            direction += Vector3.forward;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            direction += Vector3.back;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            direction += Vector3.left;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            direction += Vector3.right;
+        }
+        _rb.velocity = direction.normalized * speed;
     }
 }
