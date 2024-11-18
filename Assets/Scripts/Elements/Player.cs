@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameDirector gameDirector;
     public float speed = 2;
 
     public bool isAppleCollected;
@@ -26,6 +27,10 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             isAppleCollected = true;
+        }
+        if (other.CompareTag("Door") && isAppleCollected)
+        {
+            gameDirector.LevelCompleted();
         }
     }
 
