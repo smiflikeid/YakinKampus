@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class GameDirector : MonoBehaviour
 {
-    public List<Enemy> enemies;
+    [Header("Managers")]
+    public EnemyManager enemyManager;
+    public LevelManager levelManager;
+
+    private void Start()
+    {
+        levelManager.RestartLevel();
+    }
+
     public void LevelCompleted()
     {
-        foreach (var e in enemies)
-        {
-            e.speed = 0;
-        }
+        enemyManager.StopEnemies();
     }
 }

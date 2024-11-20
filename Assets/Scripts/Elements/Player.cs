@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Collectable"))
         {
             other.gameObject.SetActive(false);
+            gameDirector.levelManager.AppleCollected();
             isAppleCollected = true;
         }
         if (other.CompareTag("Door") && isAppleCollected)

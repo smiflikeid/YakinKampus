@@ -16,4 +16,9 @@ public class Enemy : MonoBehaviour
             transform.position += direction * Time.deltaTime * speed;
         }
     }
+
+    public void Stop()
+    {
+        speed = 0;
+    }
 }
