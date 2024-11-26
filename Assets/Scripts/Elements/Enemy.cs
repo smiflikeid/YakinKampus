@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Player player;
+    private Player _player;
     public float speed;
+
+    public void StartEnemy(Player player)
+    {
+        _player = player;
+    }
 
     private void Update()
     {
-        if (player.isAppleCollected)
+        if (_player.isAppleCollected)
         {
-            var direction = (player.transform.position - transform.position).normalized;
+            var direction = (_player.transform.position - transform.position).normalized;
             transform.position += direction * Time.deltaTime * speed;
         }
     }
