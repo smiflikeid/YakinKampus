@@ -5,11 +5,31 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public GameObject door;
+    public GameObject collectablePrefab;
+    public List<GameObject> collectables;
 
     public void RestartLevel()
     {
-        ActivateDoor();
+        DeactivateDoor();
         RandomizeDoorPosition();
+        DeleteCollectables();
+        GenerateCollectables();
+    }
+
+    private void DeleteCollectables()
+    {
+        foreach (GameObject c in collectables) 
+        {
+            Destroy(c);
+        }
+        collectables.Clear();
+    }
+
+    private void GenerateCollectables()
+    {
+        var newCollectable = Instantiate(collectablePrefab);
+        newCollectable.transform.position = new Vector3(Random.Range(-2.5f,2.5f),0,11);
+        collectables.Add(newCollectable);
     }
 
     private void RandomizeDoorPosition()
@@ -19,7 +39,7 @@ public class LevelManager : MonoBehaviour
         door.transform.position = pos;
     }
 
-    private void ActivateDoor()
+    private void DeactivateDoor()
     {
         door.SetActive(false);
     }
