@@ -11,16 +11,18 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rb;
 
-    public void RestartPlayer()
+    // Start is called before the first frame update
+    void Start()
     {
-        gameObject.SetActive(true);
         _rb = GetComponent<Rigidbody>();
-        _rb.position = Vector3.zero;
-        isAppleCollected = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
+        }
         if (other.CompareTag("Collectable"))
         {
             other.gameObject.SetActive(false);
@@ -30,14 +32,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Door") && isAppleCollected)
         {
             gameDirector.LevelCompleted();
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("Enemy"))
-        {
-            gameObject.SetActive(false);
         }
     }
 

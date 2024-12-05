@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy enemyPrefab;
     public List<Enemy> enemies;
 
-    public Vector2 enemyCount;
+    public int enemyCount;
 
     public void RestartEnemyManager()
     {
@@ -19,10 +19,10 @@ public class EnemyManager : MonoBehaviour
 
     private void GenerateEnemies()
     {
-        var randomEnemyCount = UnityEngine.Random.Range(enemyCount.x, enemyCount.y);
-        for (int i = 0; i < randomEnemyCount; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
-            var enemyXPos = UnityEngine.Random.Range(-2.5f, 2.5f);
+            var enemyXPos = 0f;
+            enemyXPos = UnityEngine.Random.Range(-2.5f, 2.5f);
             var newEnemy = Instantiate(enemyPrefab);
             newEnemy.transform.position = new Vector3(enemyXPos, 0, 3 + i * 1.5f);
             enemies.Add(newEnemy);
@@ -32,11 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     private void DeleteEnemies()
     {
-        foreach (var e in enemies) 
-        {
-            Destroy(e.gameObject);
-        }
-        enemies.Clear();
+
     }
 
     public void StopEnemies()
