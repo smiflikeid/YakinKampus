@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3607225145475128350}
   - component: {fileID: 8643644504744449585}
+  - component: {fileID: 5063430687282097554}
   m_Layer: 0
   m_Name: Collectable Prefab
   m_TagString: Collectable
@@ -61,6 +62,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5063430687282097554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020322122743493891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5476e61faec86e941bce9ec8fd7305e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5173362636948458275
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   navMeshAgent: {fileID: 523943815031952673}
+  zPrefab: {fileID: 6836510082003151924, guid: d5928d6d71e401543a055d208c51f705, type: 3}
 --- !u!54 &2276034486371635204
 Rigidbody:
   m_ObjectHideFlags: 0
