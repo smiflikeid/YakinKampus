@@ -368,6 +368,12 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!95 &215923841 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cc456e0880a870d4b99c892be11d9d64,
+    type: 3}
+  m_PrefabInstance: {fileID: 624794749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &283133081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1311,7 @@ MonoBehaviour:
   gameDirector: {fileID: 513661261}
   speed: 2
   isAppleCollected: 0
+  animator: {fileID: 215923841}
 --- !u!54 &1209824680
 Rigidbody:
   m_ObjectHideFlags: 0

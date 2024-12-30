@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rb;
 
+    private bool _isCharacterWalking;
+
+    public Animator animator;
+
     public void RestartPlayer()
     {
         gameObject.SetActive(true);
@@ -44,15 +48,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
         var direction = Vector3.zero;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 5;
+            SetWalkAnimationSpeed(2.5f);
         }
         else
         {
             speed = 2;
+            SetWalkAnimationSpeed(1f);
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -70,6 +81,36 @@ public class Player : MonoBehaviour
         {
             direction += Vector3.right;
         }
+        if (direction.magnitude < .1f)
+        {
+            TriggerIdleAnimation();
+        }
+        else
+        {
+            TriggerWalkAnimation();
+        }
+        transform.LookAt(transform.position + direction);
         _rb.velocity = direction.normalized * speed;
+    }
+
+    void TriggerWalkAnimation()
+    {
+        if (!_isCharacterWalking)
+        {
+            animator.SetTrigger("Walk");
+            _isCharacterWalking = true;
+        }
+    }
+    void TriggerIdleAnimation()
+    {
+        if (_isCharacterWalking)
+        {
+            animator.SetTrigger("Idle");
+            _isCharacterWalking = false;
+        }
+    }
+    void SetWalkAnimationSpeed(float s)
+    {
+        animator.SetFloat("WalkSpeedMultiplier", s);
     }
 }
