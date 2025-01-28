@@ -31,17 +31,19 @@ public class Enemy : MonoBehaviour
 
     private void CreateAndAnimateZ()
     {
-        _z1 = Instantiate(zPrefab);
+        _z1 = Instantiate(zPrefab, transform);
         _z1.position = transform.position + Vector3.up * 2;
         _z1.localScale = Vector3.zero;
         _z1.DOMoveY(_z1.transform.position.y + 1, 1f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         _z1.DOScale(1, 1f).SetLoops(-1, LoopType.Restart);
+        _z1.LookAt(_z1.transform.position + Vector3.forward);
 
-        _z2 = Instantiate(zPrefab);
+        _z2 = Instantiate(zPrefab, transform);
         _z2.position = transform.position + Vector3.up * 2;
         _z2.localScale = Vector3.zero;
         _z2.DOMoveY(_z2.transform.position.y + 1, 1f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetDelay(.5f);
         _z2.DOScale(1, 1f).SetLoops(-1, LoopType.Restart).SetDelay(.5f);
+        _z2.LookAt(_z2.transform.position + Vector3.forward);
     }
 
     private void Update()
